@@ -52,7 +52,7 @@
 	int main()
 	{
 		int choice, v , pos; 
-		{
+		do{
 			printf("\n1.PUSH 2.POP 3.PEEP 4.CHANGE 5.DISPLAY 6.EXIT\n");
 			printf("Enter Choice");
 			scanf("%d",&choice);
