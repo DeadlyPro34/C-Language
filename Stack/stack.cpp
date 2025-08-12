@@ -1,5 +1,4 @@
 #include <stdio.h>   // For input/output functions
-#include <conio.h>   // For getch() in some compilers (optional)
 
 #define size 5        // Maximum size of the stack
 
