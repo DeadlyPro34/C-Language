@@ -1,14 +1,14 @@
 #include <stdio.h>
-#define SIZE 5   
+#define size 5   
 
 typedef struct {
-    int arr[SIZE];
+    int arr[size];
     int top;
     int id;   
 } Stack;
 
 void push(Stack *s, int value) {
-    if (s->top == SIZE - 1) {
+    if (s->top == size - 1) {
         printf("Stack%d Overflow!\n", s->id);
     } else {
         s->arr[++(s->top)] = value;
@@ -18,11 +18,11 @@ void push(Stack *s, int value) {
 
 int pop(Stack *s) {
     if (s->top == -1) {
-        printf("Stack%d Underflow!\n", s->id);
+        printf("Stack Underflow!\n", s->id);
         return -1;
     } else {
         int value = s->arr[(s->top)--];
-        printf("%d popped from Stack%d\n", value, s->id);
+        printf("%d popped from Stack\n", value, s->id);
         return value;
     }
 }
@@ -46,7 +46,7 @@ void emptyXtoY(Stack *x, Stack *y) {
     }
     while (x->top != -1) {
         int val = pop(x);
-        if (y->top == SIZE - 1) {
+        if (y->top == size - 1) {
             printf("StackY Overflow while transferring!\n");
             break;
         }
@@ -70,31 +70,17 @@ int main() {
 
         switch (choice) {
             case 1:
-                printf("Push into which stack (1=X / 2=Y)? ");
-                scanf("%d", &stackChoice);
                 printf("Enter value: ");
                 scanf("%d", &value);
-                if (stackChoice == 1)
                     push(&x, value);
-                else if (stackChoice == 2)
-                    push(&y, value);
-                else
-                    printf("Invalid stack choice!\n");
                 break;
 
             case 2:
-                printf("Pop from which stack (1=X / 2=Y)? ");
-                scanf("%d", &stackChoice);
-                if (stackChoice == 1)
-                    pop(&x);
-                else if (stackChoice == 2)
-                    pop(&y);
-                else
-                    printf("Invalid stack choice!\n");
+                pop(&x);
                 break;
 
             case 3:
-                printf("Display which stack (1=X / 2=Y)? ");
+                printf("Display stack 1=X / 2=Y ");
                 scanf("%d", &stackChoice);
                 if (stackChoice == 1)
                     display(&x);
@@ -111,12 +97,11 @@ int main() {
             case 5:
                 printf("Exit\n");
                 break;
-
-            default:
-                printf("Invalid choice\n");
+            		default:
+                	printf("Invalid choice\n");
         }
-    } while (choice != 5);
-
+    } 
+	while (choice != 5);
     return 0;
 }
 
