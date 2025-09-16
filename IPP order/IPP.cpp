@@ -11,11 +11,26 @@ struct node{
 struct node *newnode(int data){
 	struct node *node=(struct node*) malloc(sizeof(struct node));
 	node->data = data;
-	node->left = node->right=NULL;
+	node->left = node->right = NULL;
 	return node;
 }
 
-void inorderR(struct node*root){
+struct node * insert(struct node *root,int value)
+{
+	if(root == NULL)
+	{
+		return newnode(value);
+	}
+	if(value<root->data)
+		root->left = insert(root->left,value);
+	
+	else if(value>root->data)
+		root->right = insert(root->right,value);
+	
+	return root;
+}
+
+void inorderR(struct node *root){
 	if(root==NULL)
 	   return;
 	inorderR(root->left);
@@ -39,55 +54,57 @@ void postorderR(struct node*root){
 	printf("%d", root->data);
 }
 
-void postorderN(struct node*root){
-	if(root==NULL)
-	   return; 
-	   
-	struct node*x[MAX],*y[MAX];
-	int t1 = -1, t2 = -1;
-	
-	x[++t2]=root;
-	
-	while(t1 != -1)
-	{
-		struct node* node=x[t1--];
-		y[++t2] = node;
-		
-		if(node->left)
-		   x[++t1]=node->left;
-		if(node->right)
-		   x[++t1]=node->right;
-	}
-	
-	while(t2!=-1)
-	{
-		printf("%d", y[t2--]->data);
-	}
+void postorderN(struct node* root) {
+    if (root == NULL)
+        return;
+
+    struct node* x[MAX], * y[MAX];
+    int topX = -1, topY = -1;
+
+    x[++topX] = root;
+
+    while (topX != -1) {
+        struct node* node = x[topX--];
+        y[++topY] = node;
+
+        if (node->left)
+            x[++topX] = node->left;
+        if (node->right)
+            x[++topX] = node->right;
+    }
+
+    while (topY != -1) {
+        printf("%d ", y[topY--]->data);
+    }
 }
 
 int main() {
-    struct node *root = newnode(1);
-    root->left = newnode(2);
-    root->right = newnode(3);
-    root->left->left = newnode(4);
-    root->left->right = newnode(5);
-
-    printf("Inorder (Recursive): ");
+    struct node *root = NULL;
+    int n,v,i;
+    
+    printf("Enter no of node:  ");
+    scanf("%d",&n);
+    
+    printf("Enter the tree value:  ");
+    for(i=0;i<n;i++)
+    {
+    	scanf("%d", &v);
+    	root = insert(root, v);
+	}
+	
+	printf("\nInorder is: ");
     inorderR(root);
-    printf("\n");
-
-    printf("Preorder (Recursive): ");
+    
+    printf("\nPreorder is: ");
     preorderR(root);
-    printf("\n");
-
-    printf("Postorder (Recursive): ");
+    
+    printf("\nPostorder is: ");
     postorderR(root);
-    printf("\n");
-
-    printf("Postorder (Non-Recursive): ");
+    
+    printf("\nPostorder Non-R is: ");
     postorderN(root);
-    printf("\n");
-
+    
+    getch();
     return 0;
 }
 

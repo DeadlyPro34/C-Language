@@ -1,0 +1,30 @@
+{
+	if(root!=NULL)
+	{
+		inorder(root->left);
+		printf("%d , ",root->data);
+		inorder(root->right);
+	}
+}
+
+int main()
+{
+	struct node * root = NULL;
+	int n,v,i;
+
+	printf("Enter the no of nodes: ");
+	scanf("%d",&n);
+	
+	printf("Enter the tree value: ");
+	for(i=0; i<n; i++)
+	{
+		scanf("%d", &v);
+		root = insert(root,v);
+	}
+	
+	printf("The inorder traversal is: ");
+	inorder(root);
+	
+	getch();
+	return 0;
+}
