@@ -3,12 +3,14 @@
 #include<stdlib.h>
 #define MAX 10
 
-struct node{
+struct node
+{
 	int data;
 	struct node *left, *right;
 };
 
-struct node *newnode(int data){
+struct node *newnode(int data)
+{
 	struct node *node=(struct node*) malloc(sizeof(struct node));
 	node->data = data;
 	node->left = node->right = NULL;
@@ -30,7 +32,8 @@ struct node * insert(struct node *root,int value)
 	return root;
 }
 
-void inorderR(struct node *root){
+void inorderR(struct node *root)
+{
 	if(root==NULL)
 	   return;
 	inorderR(root->left);
@@ -38,7 +41,8 @@ void inorderR(struct node *root){
 	inorderR(root->right);
 }
 
-void preorderR(struct node *root){
+void preorderR(struct node *root)
+{
 	if(root==NULL)
 	   return;
 	printf("%d", root->data);
@@ -46,7 +50,8 @@ void preorderR(struct node *root){
 	preorderR(root->right);
 }
 
-void postorderR(struct node*root){
+void postorderR(struct node*root)
+{
 	if(root==NULL)
 	   return;
 	postorderR(root->left);
@@ -54,7 +59,8 @@ void postorderR(struct node*root){
 	printf("%d", root->data);
 }
 
-void postorderN(struct node* root) {
+void postorderN(struct node* root) 
+{
     if (root == NULL)
         return;
 
@@ -78,7 +84,8 @@ void postorderN(struct node* root) {
     }
 }
 
-int main() {
+int main() 
+{
     struct node *root = NULL;
     int n,v,i;
     
@@ -107,4 +114,3 @@ int main() {
     getch();
     return 0;
 }
-
