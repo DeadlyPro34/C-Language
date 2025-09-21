@@ -84,6 +84,42 @@ void postorderN(struct node* root)
     }
 }
 
+// ---------- Non-Recursive Inorder ----------
+void inorderN(struct node *root) 
+{
+    struct node *stack[MAX];
+    int top = -1;
+    while (root != NULL || top != -1) 
+	{
+        if (root != NULL) {
+            stack[++top] = root;
+            root = root->left;
+        } 
+		else 
+		{
+            root = stack[top--];
+            printf("%d ", root->data);
+            root = root->right;
+        }
+    }
+}
+
+// ---------- Non-Recursive Preorder ----------
+void preorderN(struct node *root) 
+{
+    if (root == NULL) return;
+    struct node *stack[MAX];
+    int top = -1;
+    stack[++top] = root;
+    while (top != -1) 
+	{
+        root = stack[top--];
+        printf("%d ", root->data);
+        if (root->right) stack[++top] = root->right;
+        if (root->left)  stack[++top] = root->left;
+    }
+}
+
 int main() 
 {
     struct node *root = NULL;
@@ -110,6 +146,12 @@ int main()
     
     printf("\nPostorder Non-R is: ");
     postorderN(root);
+    
+    printf("\nInorder (Non-Recursive): ");
+    inorderN(root);
+
+    printf("\nPreorder (Non-Recursive): ");
+    preorderN(root);
     
     getch();
     return 0;
