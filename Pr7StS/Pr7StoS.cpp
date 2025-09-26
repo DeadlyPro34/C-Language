@@ -18,11 +18,11 @@ void push(Stack *s, int value) {
 
 int pop(Stack *s) {
     if (s->top == -1) {
-        printf("Stack Underflow!\n", s->id);
+        printf("Stack%d Underflow!\n", s->id);
         return -1;
     } else {
         int value = s->arr[(s->top)--];
-        printf("%d popped from Stack\n", value, s->id);
+        printf("%d popped from Stack%d\n", value, s->id);
         return value;
     }
 }
